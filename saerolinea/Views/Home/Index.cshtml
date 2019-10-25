@@ -1,0 +1,115 @@
+﻿@{
+    ViewBag.Title = "Inicio";
+}
+
+<div class="jumbotron">
+    <h1>Autor: Steven Rodriguez Rodriguez</h1>
+    <p class="lead">Esta es la API para la aerolínea en cuestión</p>
+</div>
+
+<div class="row">
+    <div class="col-lg-12">
+        <h2>Consulta y creación de usuarios</h2>
+        <p>
+            Los usuarios pueden ser consultados a través de este enlace, adicional, pueden copiar en enlace e incluir los elementos
+            del usuario (Todos sus atributos) a través de herramientas como postman y generar el nuevo usuario, 
+            es importante que si se crea por postman se haga vía POST con el body application/x-www-form-urlencoded
+        </p>
+        
+        <p>
+            <figure class="panel">
+                <img src="~/images/users.JPG" width="100%" />
+                <figcaption>
+                    <i>
+                        Creación de un usuario POSTMAN
+                    </i>
+                </figcaption>
+            </figure>
+        </p>
+        
+        <p>
+            <a class="btn btn-default" target="_blank" href="@Url.RouteUrl("DefaultApi", new { httproute = true, controller = "Users" })">
+                Consultar usuarios &raquo;
+            </a>
+        </p>
+    </div>
+    <div class="col-lg-12">
+        <h2>Consulta y creación de vuelos</h2>
+        <p>
+            Los vuelos pueden ser consultados a través de este enlace, adicional, pueden copiar en enlace e incluir los elementos
+            del vuelo (Todos sus atributos) a través de herramientas como postman y generar el nuevo vuelo,
+            es importante que si se crea por postman se haga vía POST con el body application/x-www-form-urlencoded
+        </p>
+
+        <p>
+            <figure class="panel">
+                <img src="~/images/vuelos.JPG" width="100%" />
+                <figcaption>
+                    <i>
+                        Creación de un vuelo POSTMAN
+                    </i>
+                </figcaption>
+            </figure>
+        </p>
+
+        <p>
+            <a class="btn btn-default" target="_blank" href="@Url.RouteUrl("DefaultApi", new { httproute = true, controller = "Flights" })">
+                Consultar vuelos &raquo;
+            </a>
+        </p>
+    </div>
+
+    <div class="col-lg-12">
+        <h2>Consulta y creación vinculación de vuelos (1 registro)</h2>
+        <p>
+            Los vuelos y sus usuarios pueden ser consultados a través de este enlace, adicional, pueden copiar en enlace e incluir los elementos
+            de la vinculación (id vuelo y documento del usuario) a través de herramientas como postman y generar la nueva vinculación,
+            es importante que si se crea por postman se haga vía POST con el body application/x-www-form-urlencoded
+        </p>
+
+        <p>
+            <figure class="panel">
+                <img src="~/images/vinculacion.JPG" width="100%" />
+                <figcaption>
+                    <i>
+                        Generar una vinculación vuelo - usuario POSTMAN
+                    </i>
+                </figcaption>
+            </figure>
+        </p>
+
+        <p>
+            <a class="btn btn-default" target="_blank" href="@Url.RouteUrl("DefaultApi", new { httproute = true, controller = "FlightsUsers" })">
+                Consultar vinculaciones &raquo;
+            </a>
+        </p>
+    </div>
+
+
+    <div class="col-lg-12">
+        <h2>Generar vinculación de vuelos (Varios registro)</h2>
+        <p>
+            La inclusión múltiple se puede hacer mediante el siguiente enlace y permitirá enviar en un array diferentes vuelos y documentos
+            de usuarios para gestionar una vinculación masíva (Se requiere el id de vuelo y el número de documento del usuario)
+        </p>
+
+        <p>
+            <figure class="panel">
+                <img src="~/images/multiple.JPG" width="100%" />
+                <figcaption>
+                    <i>
+                        Generar una vinculación vuelo - usuario POSTMAN
+                    </i>
+                </figcaption>
+            </figure>
+        </p>
+
+        <p>
+            <a class="btn btn-default" target="_blank" href="@Url.RouteUrl("DefaultApi", new { httproute = true, controller = "Vinculation" })">
+                Consultar vinculaciones &raquo;
+            </a>
+        </p>
+    </div>
+
+
+</div>

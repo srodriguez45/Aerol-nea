@@ -1,0 +1,277 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="saerolineaModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="cities">
+          <Key>
+            <PropertyRef Name="citySource" />
+          </Key>
+          <Property Name="idCity" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="cityName" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="citySource" Type="char" MaxLength="3" Nullable="false" />
+          <Property Name="countrySorce" Type="varchar" MaxLength="3" Nullable="false" />
+        </EntityType>
+        <EntityType Name="flights">
+          <Key>
+            <PropertyRef Name="idFlight" />
+          </Key>
+          <Property Name="idFlight" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="citySource" Type="char" MaxLength="3" Nullable="false" />
+          <Property Name="cityDestination" Type="char" MaxLength="3" Nullable="false" />
+          <Property Name="departureDateTime" Type="datetime" Nullable="false" />
+          <Property Name="planeNumber" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="pilotName" Type="varchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="flightsUsers">
+          <Key>
+            <PropertyRef Name="idFlightUser" />
+          </Key>
+          <Property Name="idFlightUser" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idFlight" Type="int" Nullable="false" />
+          <Property Name="documentNumber" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="users">
+          <Key>
+            <PropertyRef Name="documentNumber" />
+          </Key>
+          <Property Name="idUser" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="userName" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="documentType" Type="char" MaxLength="3" Nullable="false" />
+          <Property Name="documentNumber" Type="int" Nullable="false" />
+          <Property Name="email" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="phoneNumber" Type="varchar" MaxLength="20" />
+        </EntityType>
+        <Association Name="FK_flights_cities">
+          <End Role="cities" Type="Self.cities" Multiplicity="1" />
+          <End Role="flights" Type="Self.flights" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="cities">
+              <PropertyRef Name="citySource" />
+            </Principal>
+            <Dependent Role="flights">
+              <PropertyRef Name="citySource" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_flightsUsers_flights">
+          <End Role="flights" Type="Self.flights" Multiplicity="1" />
+          <End Role="flightsUsers" Type="Self.flightsUsers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="flights">
+              <PropertyRef Name="idFlight" />
+            </Principal>
+            <Dependent Role="flightsUsers">
+              <PropertyRef Name="idFlight" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_flightsUsers_users1">
+          <End Role="users" Type="Self.users" Multiplicity="1" />
+          <End Role="flightsUsers" Type="Self.flightsUsers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="users">
+              <PropertyRef Name="documentNumber" />
+            </Principal>
+            <Dependent Role="flightsUsers">
+              <PropertyRef Name="documentNumber" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="saerolineaModelStoreContainer">
+          <EntitySet Name="cities" EntityType="Self.cities" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="flights" EntityType="Self.flights" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="flightsUsers" EntityType="Self.flightsUsers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="users" EntityType="Self.users" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_flights_cities" Association="Self.FK_flights_cities">
+            <End Role="cities" EntitySet="cities" />
+            <End Role="flights" EntitySet="flights" />
+          </AssociationSet>
+          <AssociationSet Name="FK_flightsUsers_flights" Association="Self.FK_flightsUsers_flights">
+            <End Role="flights" EntitySet="flights" />
+            <End Role="flightsUsers" EntitySet="flightsUsers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_flightsUsers_users1" Association="Self.FK_flightsUsers_users1">
+            <End Role="users" EntitySet="users" />
+            <End Role="flightsUsers" EntitySet="flightsUsers" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="saerolineaModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="cities">
+          <Key>
+            <PropertyRef Name="citySource" />
+          </Key>
+          <Property Name="idCity" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="cityName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="citySource" Type="String" MaxLength="3" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="countrySorce" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="flights" Relationship="Self.FK_flights_cities" FromRole="cities" ToRole="flights" />
+        </EntityType>
+        <EntityType Name="flights">
+          <Key>
+            <PropertyRef Name="idFlight" />
+          </Key>
+          <Property Name="idFlight" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="citySource" Type="String" MaxLength="3" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="cityDestination" Type="String" MaxLength="3" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="departureDateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="planeNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="pilotName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="cities" Relationship="Self.FK_flights_cities" FromRole="flights" ToRole="cities" />
+          <NavigationProperty Name="flightsUsers" Relationship="Self.FK_flightsUsers_flights" FromRole="flights" ToRole="flightsUsers" />
+        </EntityType>
+        <EntityType Name="flightsUsers">
+          <Key>
+            <PropertyRef Name="idFlightUser" />
+          </Key>
+          <Property Name="idFlightUser" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idFlight" Type="Int32" Nullable="false" />
+          <Property Name="documentNumber" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="flights" Relationship="Self.FK_flightsUsers_flights" FromRole="flightsUsers" ToRole="flights" />
+          <NavigationProperty Name="users" Relationship="Self.FK_flightsUsers_users1" FromRole="flightsUsers" ToRole="users" />
+        </EntityType>
+        <EntityType Name="users">
+          <Key>
+            <PropertyRef Name="documentNumber" />
+          </Key>
+          <Property Name="idUser" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="userName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="documentType" Type="String" MaxLength="3" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="documentNumber" Type="Int32" Nullable="false" />
+          <Property Name="email" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="phoneNumber" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="flightsUsers" Relationship="Self.FK_flightsUsers_users1" FromRole="users" ToRole="flightsUsers" />
+        </EntityType>
+        <Association Name="FK_flights_cities">
+          <End Role="cities" Type="Self.cities" Multiplicity="1" />
+          <End Role="flights" Type="Self.flights" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="cities">
+              <PropertyRef Name="citySource" />
+            </Principal>
+            <Dependent Role="flights">
+              <PropertyRef Name="citySource" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_flightsUsers_flights">
+          <End Role="flights" Type="Self.flights" Multiplicity="1" />
+          <End Role="flightsUsers" Type="Self.flightsUsers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="flights">
+              <PropertyRef Name="idFlight" />
+            </Principal>
+            <Dependent Role="flightsUsers">
+              <PropertyRef Name="idFlight" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_flightsUsers_users1">
+          <End Role="users" Type="Self.users" Multiplicity="1" />
+          <End Role="flightsUsers" Type="Self.flightsUsers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="users">
+              <PropertyRef Name="documentNumber" />
+            </Principal>
+            <Dependent Role="flightsUsers">
+              <PropertyRef Name="documentNumber" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="saerolineaContext" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="cities" EntityType="Self.cities" />
+          <EntitySet Name="flights" EntityType="Self.flights" />
+          <EntitySet Name="flightsUsers" EntityType="Self.flightsUsers" />
+          <EntitySet Name="users" EntityType="Self.users" />
+          <AssociationSet Name="FK_flights_cities" Association="Self.FK_flights_cities">
+            <End Role="cities" EntitySet="cities" />
+            <End Role="flights" EntitySet="flights" />
+          </AssociationSet>
+          <AssociationSet Name="FK_flightsUsers_flights" Association="Self.FK_flightsUsers_flights">
+            <End Role="flights" EntitySet="flights" />
+            <End Role="flightsUsers" EntitySet="flightsUsers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_flightsUsers_users1" Association="Self.FK_flightsUsers_users1">
+            <End Role="users" EntitySet="users" />
+            <End Role="flightsUsers" EntitySet="flightsUsers" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="saerolineaModelStoreContainer" CdmEntityContainer="saerolineaContext">
+          <EntitySetMapping Name="cities">
+            <EntityTypeMapping TypeName="saerolineaModel.cities">
+              <MappingFragment StoreEntitySet="cities">
+                <ScalarProperty Name="idCity" ColumnName="idCity" />
+                <ScalarProperty Name="cityName" ColumnName="cityName" />
+                <ScalarProperty Name="citySource" ColumnName="citySource" />
+                <ScalarProperty Name="countrySorce" ColumnName="countrySorce" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="flights">
+            <EntityTypeMapping TypeName="saerolineaModel.flights">
+              <MappingFragment StoreEntitySet="flights">
+                <ScalarProperty Name="idFlight" ColumnName="idFlight" />
+                <ScalarProperty Name="citySource" ColumnName="citySource" />
+                <ScalarProperty Name="cityDestination" ColumnName="cityDestination" />
+                <ScalarProperty Name="departureDateTime" ColumnName="departureDateTime" />
+                <ScalarProperty Name="planeNumber" ColumnName="planeNumber" />
+                <ScalarProperty Name="pilotName" ColumnName="pilotName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="flightsUsers">
+            <EntityTypeMapping TypeName="saerolineaModel.flightsUsers">
+              <MappingFragment StoreEntitySet="flightsUsers">
+                <ScalarProperty Name="idFlightUser" ColumnName="idFlightUser" />
+                <ScalarProperty Name="idFlight" ColumnName="idFlight" />
+                <ScalarProperty Name="documentNumber" ColumnName="documentNumber" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="users">
+            <EntityTypeMapping TypeName="saerolineaModel.users">
+              <MappingFragment StoreEntitySet="users">
+                <ScalarProperty Name="idUser" ColumnName="idUser" />
+                <ScalarProperty Name="userName" ColumnName="userName" />
+                <ScalarProperty Name="documentType" ColumnName="documentType" />
+                <ScalarProperty Name="documentNumber" ColumnName="documentNumber" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="phoneNumber" ColumnName="phoneNumber" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="true" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
