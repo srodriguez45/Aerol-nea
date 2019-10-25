@@ -28,7 +28,7 @@ namespace saerolinea.Controllers
         public IEnumerable<ModelFlights> Get()
         {
 
-            var model = _obj.findAll();
+            var model = _obj.FindAll();
             return model;
 
         }
@@ -36,7 +36,7 @@ namespace saerolinea.Controllers
         // GET: api/Flights/5
         public ModelFlights Get(int id)
         {
-            return _obj.get(id);
+            return _obj.Get(id);
         }
 
         // POST api/<controller>

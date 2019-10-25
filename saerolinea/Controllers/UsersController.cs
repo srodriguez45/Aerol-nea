@@ -1,13 +1,7 @@
 ﻿using BLL.Model;
 using BLL.Repository;
-using Newtonsoft.Json;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
 using System.Web.Http;
-using System.Web.Script.Serialization;
 
 namespace saerolinea.Controllers
 {
@@ -30,7 +24,7 @@ namespace saerolinea.Controllers
         public IEnumerable<ModelUsers> Get()
         {
 
-            var model = _obj.findAll();
+            var model = _obj.FindAll();
             return model;
 
         }
@@ -38,14 +32,14 @@ namespace saerolinea.Controllers
         // GET api/<controller>/5
         public ModelUsers Get(int id)
         {
-            return _obj.getByDocument(id);
+            return _obj.GetByDocument(id);
         }
 
         // POST api/<controller>
         public int Post([FromBody] ModelUsers model)
         {
 
-            return _obj.add(model);
+            return _obj.Add(model);
 
         }
 

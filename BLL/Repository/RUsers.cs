@@ -3,8 +3,6 @@ using DALL.ENTITIES;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BLL.Repository
 {
@@ -12,7 +10,7 @@ namespace BLL.Repository
     {
 
 
-        public int add(ModelUsers obj)
+        public int Add(ModelUsers obj)
         {
             int id = 0;
 
@@ -21,7 +19,7 @@ namespace BLL.Repository
                 using (db)
                 {
 
-                    db.users.Add(map(obj));
+                    db.users.Add(Map(obj));
                     db.SaveChanges();
                     var model = db.users.Find(obj.documentNumber);
                     id = model.documentNumber;
@@ -36,23 +34,23 @@ namespace BLL.Repository
 
             return id;
 
-        }   
+        }
 
-        public List<ModelUsers> findAll()
+        public List<ModelUsers> FindAll()
         {
 
             using (db)
             {
 
-                return db.users.Select(map).ToList();
-                   
+                return db.users.Select(Map).ToList();
+
             }
 
 
         }
 
 
-        public ModelUsers getByDocument(int number)
+        public ModelUsers GetByDocument(int number)
         {
 
             try
@@ -61,11 +59,12 @@ namespace BLL.Repository
                 using (db)
                 {
 
-                    return map(db.users.Find(number));
+                    return Map(db.users.Find(number));
 
                 }
 
-            } catch(Exception e) { return new ModelUsers(); }
+            }
+            catch (Exception) { return new ModelUsers(); }
 
         }
 
@@ -73,7 +72,7 @@ namespace BLL.Repository
 
 
 
-        private users map(ModelUsers obj)
+        private users Map(ModelUsers obj)
         {
 
             return new users()
@@ -89,7 +88,7 @@ namespace BLL.Repository
         }
 
 
-        private ModelUsers map(users obj)
+        private ModelUsers Map(users obj)
         {
 
             return new ModelUsers()

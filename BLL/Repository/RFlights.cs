@@ -3,8 +3,6 @@ using DALL.ENTITIES;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BLL.Repository
 {
@@ -21,7 +19,7 @@ namespace BLL.Repository
                 using (db)
                 {
 
-                    db.flights.Add(map(obj));
+                    db.flights.Add(Map(obj));
                     db.SaveChanges();
                     var model = getByPlaneNumber(obj.planeNumber);
                     id = model.idFlight;
@@ -38,13 +36,13 @@ namespace BLL.Repository
 
         }
 
-        public List<ModelFlights> findAll()
+        public List<ModelFlights> FindAll()
         {
 
             using (db)
             {
 
-                return db.flights.Select(map).ToList();
+                return db.flights.Select(Map).ToList();
 
             }
 
@@ -52,7 +50,7 @@ namespace BLL.Repository
         }
 
 
-        public ModelFlights get(int number)
+        public ModelFlights Get(int number)
         {
 
             try
@@ -61,12 +59,12 @@ namespace BLL.Repository
                 using (db)
                 {
 
-                    return map(db.flights.Find(number));
+                    return Map(db.flights.Find(number));
 
                 }
 
             }
-            catch (Exception e) { return new ModelFlights(); }
+            catch (Exception) { return new ModelFlights(); }
 
 
         }
@@ -81,7 +79,7 @@ namespace BLL.Repository
                 using (db)
                 {
 
-                    return map(
+                    return Map(
                         db.flights.Where(
                             f => f.planeNumber.Equals(number)
                         ).First()
@@ -90,7 +88,7 @@ namespace BLL.Repository
                 }
 
             }
-            catch (Exception e) { return new ModelFlights(); }
+            catch (Exception) { return new ModelFlights(); }
 
 
         }
@@ -98,7 +96,7 @@ namespace BLL.Repository
 
 
         //es una forma de castear un objeto con otro para usar ModelFlights
-        private flights map(ModelFlights obj)
+        private flights Map(ModelFlights obj)
         {
 
             return new flights()
@@ -115,7 +113,7 @@ namespace BLL.Repository
 
 
         //es una forma de castear un objeto con otro para usar ModelFlights
-        private ModelFlights map(flights obj)
+        private ModelFlights Map(flights obj)
         {
 
             return new ModelFlights()
