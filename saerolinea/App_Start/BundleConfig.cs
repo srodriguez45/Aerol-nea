@@ -28,8 +28,9 @@ namespace saerolinea
                       ));
 
             bundles.Add(new ScriptBundle("~/bundles/user").Include(
-                      "~/Scripts/Controllers/user.controller.js",
-                      "~/Scripts/Services/user.service.js"));
+                      "~/Scripts/Services/user.service.js",
+                      "~/Scripts/Controllers/user.controller.js"
+                      ));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",

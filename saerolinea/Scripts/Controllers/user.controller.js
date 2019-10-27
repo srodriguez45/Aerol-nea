@@ -1,29 +1,25 @@
-﻿(function () {
-    init();
-})();
+﻿/*
+ * Controlador
+ */
+app.controller('userController', ['$scope', 'userService', function ($scope, userService) {
 
-function init() {
-    app.controller('userController', userController);
-    userController.$inject = ['$scope', '$http', 'userService', '$filter', 'repoService'];
+    //iniciamos un post cualquiera como un objeto vacÃ­o
+    $scope.list = {};
 
-    function userController($scope, $http, userService, $filter) {
+    function init() {
 
-        $scope.list = {};
+        userService.List()
+            .then(response => response.data)
+            .then(function (data) {
+                if (data != null) {
+                    console.log(data);
+                    $scope.list = data;
+                }
+            });
 
-        $scope.List = () => {
-            userService.List()
-                .then(response => response.data)
-                .then(function (data) {
-                    if (data != null) {
-                        $scope.list = data.list;
-                    }
-                });
-        }
-        //Init
-        $scope.Init = () => {
-            $scope.List();
-        }
-
-        $scope.Init();
     }
-}
+
+
+    init();
+
+}]);
