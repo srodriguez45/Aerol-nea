@@ -1,8 +1,6 @@
-﻿<div class="container" ng-controller="userController">
+﻿<div class="container-fluid" ng-controller="userController">
     <div class="users">
-        <div class="search">
-            <input type="text" ng-model="searchString" placeholder="Buscar" />
-        </div>
+        
         <table class="table table-responsive" ng-show="list.length > 0">
             <tr>
                 <th>Nombres</th>
@@ -11,7 +9,7 @@
                 <th>Correo</th>
                 <th>Teléfono</th>
             </tr>
-            <tr ng-repeat="item in list | searchFor:searchString">
+            <tr ng-repeat="item in list">
                 <td>{{item.userName}}</td>
                 <td>{{item.documentType}}</td>
                 <td>{{item.documentNumber}}</td>
