@@ -1,0 +1,27 @@
+﻿<div class="container" ng-controller="userController">
+    <div class="users">
+        <div class="search">
+            <input type="text" ng-model="searchString" placeholder="Buscar" />
+        </div>
+        <table class="table table-responsive" ng-show="list.length > 0">
+            <tr>
+                <th>Nombres</th>
+                <th>Tipo Documento</th>
+                <th>Documento</th>
+                <th>Correo</th>
+                <th>Teléfono</th>
+            </tr>
+            <tr ng-repeat="item in list | searchFor:searchString">
+                <td>{{item.userName}}</td>
+                <td>{{item.documentType}}</td>
+                <td>{{item.documentNumber}}</td>
+                <td>{{item.email}}</td>
+                <td>{{item.phoneNumber}}</td>
+            </tr>
+        </table>
+        <div ng-show="list.length == 0">
+            <p>No hay usuarios en la plataforma</p>
+        </div>
+    </div>
+</div>
+@Scripts.Render("~/bundles/user")
