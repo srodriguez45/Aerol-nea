@@ -1,0 +1,31 @@
+﻿<div id="modal-container" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="text-center text-info">Usuario</h2>
+            </div>
+            <div class="modal-body text-center">
+                @Html.TextBox("name", "", new { @class = "form-control", @placeholder = "Nombre", @type = "text" })
+                <br />
+                <select class="form-control" id="typeDoc">
+                    <option>CC</option>
+                    <option>CE</option>
+                    <option>TI</option>
+                </select>
+                <br />
+                @Html.TextBox("document", "", new { @class = "form-control", @placeholder = "Documento", @type = "number" })
+                <br />
+                @Html.TextBox("mail", "", new { @class = "form-control", @placeholder = "Correo", @type = "mail" })
+                <br />
+                @Html.TextBox("phone", "", new { @class = "form-control", @placeholder = "Telefono", @type = "number" })
+                <br />
+                <input type="button" id="sendUser" class="btn btn-primary btn-success" value="Enviar"/>
+            </div>
+            <div class="modal-footer">
+
+            </div>
+        </div>
+    </div>
+</div>
+@Styles.Render("~/Content/css")
+@Scripts.Render("~/bundles/user")
