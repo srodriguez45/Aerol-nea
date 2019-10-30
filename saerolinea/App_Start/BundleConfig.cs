@@ -27,9 +27,9 @@ namespace saerolinea
                       "~/Scripts/respond.js"
                       ));
 
-            bundles.Add(new ScriptBundle("~/bundles/user").Include(
-                      "~/Scripts/Services/user.service.js",
-                      "~/Scripts/Controllers/user.controller.js"
+            bundles.Add(new ScriptBundle("~/bundles/aero").Include(
+                      "~/Scripts/Services/aero.service.js",
+                      "~/Scripts/Controllers/aero.controller.js"
                       ));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
