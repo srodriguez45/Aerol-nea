@@ -1,13 +1,9 @@
-﻿
-@{
+﻿@{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-
 <h2>Usuarios en el sistema</h2>
 
-@{ Html.RenderPartial("~/Views/User/_List.cshtml");
-   Html.RenderPartial("~/Views/User/_Create.cshtml");
- }
-
+@{Html.RenderPartial("~/Views/User/_List.cshtml");}
+@{Html.RenderPartial("~/Views/User/_Create.cshtml");}

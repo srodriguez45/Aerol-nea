@@ -1,4 +1,4 @@
-﻿<div class="container-fluid" ng-controller="userController">
+﻿<div class="container-fluid">
     <div class="users">
         <div class="jumbotron">
             <p>Listado de usuarios registrados actualmente en el sistema</p>
@@ -12,7 +12,7 @@
             </span>
         </div>
         <br />
-        <table class="table table-responsive" ng-show="list.length > 0">
+        <table class="table table-responsive" ng-show="users.length > 0">
             <tr>
                 <th>Nombres</th>
                 <th>Tipo Documento</th>
@@ -20,7 +20,7 @@
                 <th>Correo</th>
                 <th>Teléfono</th>
             </tr>
-            <tr ng-repeat="item in list">
+            <tr ng-repeat="item in users">
                 <td>{{item.userName}}</td>
                 <td>{{item.documentType}}</td>
                 <td>{{item.documentNumber}}</td>
@@ -33,4 +33,3 @@
         </div>
     </div>
 </div>
-@Scripts.Render("~/bundles/user")
