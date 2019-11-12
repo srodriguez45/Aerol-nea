@@ -7,29 +7,34 @@
             <span class="text-info">Agregar usuario</span>
             <span class="glyphicon glyphicon-plus"
                   data-toggle="modal" data-target="#modal-container"
-                  style="font-size: 30px;"
+                  style="font-size: 13px;"
                   title="Agregar Usuario">
             </span>
         </div>
         <br />
-        <table class="table table-responsive" ng-show="users.length > 0">
-            <tr>
-                <th>Nombres</th>
-                <th>Tipo Documento</th>
-                <th>Documento</th>
-                <th>Correo</th>
-                <th>Teléfono</th>
-            </tr>
-            <tr ng-repeat="item in users">
-                <td>{{item.userName}}</td>
-                <td>{{item.documentType}}</td>
-                <td>{{item.documentNumber}}</td>
-                <td>{{item.email}}</td>
-                <td>{{item.phoneNumber}}</td>
-            </tr>
+        <table class="table table-striped"  ng-show="users.length > 0">
+            <thead class="tooltip-inner">
+                <tr>
+                    <th color="col">Nombres</th>
+                    <th scope="col">Tipo Documento</th>
+                    <th scope="col">Documento</th>
+                    <th scope="col">Correo</th>
+                    <th scope="col">Teléfono</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="item in users">
+                    <td>{{item.userName}}</td>
+                    <td>{{item.documentType}}</td>
+                    <td>{{item.documentNumber}}</td>
+                    <td>{{item.email}}</td>
+                    <td>{{item.phoneNumber}}</td>
+                </tr>
+            </tbody>
         </table>
         <div ng-show="list.length == 0">
             <p>No hay usuarios en la plataforma</p>
         </div>
+
     </div>
 </div>

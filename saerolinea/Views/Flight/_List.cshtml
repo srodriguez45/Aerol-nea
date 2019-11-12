@@ -4,21 +4,25 @@
             <p>Listado de vuelos disponibles actualmente en el sistema</p>
         </div>*@
         <br />
-        <table class="table table-responsive" ng-show="flights.length > 0">
-            <tr>
-                <th>Ciudad Origen</th>
-                <th>Ciudad destino</th>
-                <th>Fecha</th>
-                <th>Número de vuelo</th>
-                <th>Piloto</th>
-            </tr>
-            <tr ng-repeat="item in flights">
-                <td>{{item.citySource}}</td>
-                <td>{{item.cityDestination}}</td>
-                <td>{{item.departureDateTime | date : 'yyyy-MM-dd'}}</td>
-                <td>{{item.planeNumber}}</td>
-                <td>{{item.pilotName}}</td>
-            </tr>
+        <table class="table table-striped" ng-show="flights.length > 0">
+            <thead class="tooltip-inner">
+                <tr>
+                    <th>Ciudad Origen</th>
+                    <th>Ciudad destino</th>
+                    <th>Fecha</th>
+                    <th>Número de vuelo</th>
+                    <th>Piloto</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="item in flights">
+                    <td>{{item.citySource}}</td>
+                    <td>{{item.cityDestination}}</td>
+                    <td>{{item.departureDateTime | date : 'yyyy-MM-dd'}}</td>
+                    <td>{{item.planeNumber}}</td>
+                    <td>{{item.pilotName}}</td>
+                </tr>
+            </tbody>
         </table>
         <div ng-show="flights.length == 0">
             <p>No hay vuelos disponibles en la plataforma</p>

@@ -2,7 +2,7 @@
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
-<h4>Vuelos disponibles</h4>
-
+<h4>
+    <span class="text-info">Vuelos disponibles</span>
+</h4>
 @{ Html.RenderPartial("~/Views/Flight/_List.cshtml");}
