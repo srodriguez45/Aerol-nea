@@ -2,28 +2,56 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h2 class="text-center text-info">Usuario</h2>
+                <h2 class="text-center text-info">Registrar Usuarios</h2>
             </div>
             <div class="modal-body text-center">
-                @Html.TextBox("name", "", new { @class = "form-control", @placeholder = "Nombre", @type = "text" })
-                <br />
-                <select class="form-control" id="typeDoc">
-                    <option>CC</option>
-                    <option>CE</option>
-                    <option>TI</option>
-                </select>
+                <div class="form-group">
+                    @Html.Label("Nombre", new { @class = "col-md-3 control-label" })
+                    <div class="col-md-7">
+                        @Html.TextBox("name", "", new { @class = "form-control", @placeholder = "Ingrese Nombre", @type = "text" })
+                    </div>
+                </div>
+                <br /><br />
+                <div class="form-group">
+                    @Html.Label("Tipo de documento", new { @class = "col-md-3 control-label" })
+                    <div class="col-md-7">
+                        <select class="form-control" id="typeDoc">
+                            <option>Seleccione</option>
+                            <option>CC</option>
+                            <option>CE</option>
+                            <option>TI</option>
+                        </select>
+                    </div>
+                </div>
+                <br /><br />
+                <div class="form-group">
+                    @Html.Label("Documento", new { @class = "col-md-3 control-label" })
+                    <div class="col-md-7">
+                        @Html.TextBox("document", "", new { @class = "form-control", @placeholder = "Ingrese Documento", @type = "number" })
+                    </div>
+                </div>
+                <br /><br />
+                <div class="form-group">
+                    @Html.Label("Email", new { @class = "col-md-3 control-label" })
+                    <div class="col-md-7">
+                        @Html.TextBox("mail", "", new { @class = "form-control", @placeholder = "Ingrese Correo", @type = "mail" })
+                    </div>
+                </div>
+                <br /><br />
+                <div class="form-group">
+                    @Html.Label("Telefono", new { @class = "col-md-3 control-label" })
+                    <div class="col-md-7">
+                        @Html.TextBox("phone", "", new { @class = "form-control", @placeholder = "Ingrese Telefono", @type = "number" })
+                    </div>
+                </div>
 
-                <br />
-                @Html.TextBox("document", "", new { @class = "form-control", @placeholder = "Documento", @type = "number" })
-                <br />
-                @Html.TextBox("mail", "", new { @class = "form-control", @placeholder = "Correo", @type = "mail" })
-                <br />
-                @Html.TextBox("phone", "", new { @class = "form-control", @placeholder = "Telefono", @type = "number" })
-                <br />
-                <input type="button" id="sendUser" class="btn btn-primary btn-success" value="Enviar"/>
+                <br /><br />
+                <div class="form-group">
+                    <input type="button" id="sendUser" class="btn btn-primary btn-success" value="Enviar" />
+                </div>
             </div>
             <div class="modal-footer">
-
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
             </div>
         </div>
     </div>
