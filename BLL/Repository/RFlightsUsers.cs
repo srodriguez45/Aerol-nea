@@ -91,7 +91,7 @@ namespace BLL.Repository
                 }
 
             }
-            catch (Exception e) { return new ModelFlightsUsers(); }
+            catch (Exception) { return new ModelFlightsUsers(); }
 
 
         }
@@ -113,7 +113,7 @@ namespace BLL.Repository
                 }
 
             }
-            catch (Exception e) { return new ModelFlightsUsers(); }
+            catch (Exception) { return new ModelFlightsUsers(); }
 
 
         }
