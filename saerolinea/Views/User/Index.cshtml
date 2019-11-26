@@ -2,8 +2,11 @@
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<h4>
-    <span class="text-info">Lista de Usuarios</span>
-</h4>
+
+<div class="page-header">
+    <h1>Listado de usuarios</h1><small>Estos son todos los usuarios registrados en el sistema.</small>
+</div>
+
+
 @{Html.RenderPartial("~/Views/User/_List.cshtml");}
 @{Html.RenderPartial("~/Views/User/_Create.cshtml");}

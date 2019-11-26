@@ -52,21 +52,20 @@ namespace BLL.Repository
 
         public ModelFlights Get(int number)
         {
-
             try
             {
-
                 using (db)
                 {
-
-                    return Map(db.flights.Find(number));
-
+                    var obj = db.flights.Find(number);
+                    var test = Map(obj);
+                    return test;
                 }
-
             }
-            catch (Exception) { return new ModelFlights(); }
-
-
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+            }
+            return null;
         }
 
 
