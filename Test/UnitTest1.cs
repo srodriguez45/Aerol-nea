@@ -7,14 +7,24 @@ namespace Test
     [TestClass]
     public class UnitTest1
     {
-        [TestMethod]
         public void TestMethod1()
         {
             var repo = new RFlights();
             var result = repo.Get(2);
 
             Assert.AreEqual("Yhon Cruz", result.pilotName);
-            Assert.AreEqual(2, result.idFlight);            
+            Assert.AreEqual(2, result.idFlight);
         }
-    }
+
+        [TestMethod]
+        public void UnitTest2() {
+
+            Assert.AreEqual(1, 1);
+            Assert.AreEqual(2, 2);
+
+        }
+
+}
+
+    
 }
