@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.com/srodriguez45/Aerolinea.svg?branch=master)](https://travis-ci.com/srodriguez45/Aerolinea)
+
 # Requerimiento Aerolínea
 
 ## Objetivo
