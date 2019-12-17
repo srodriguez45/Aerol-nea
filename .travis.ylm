@@ -1,2 +1,7 @@
 language: csharp 
 solution: "./saerolinea.sln"
+deploy:
+  provider: azure_web_apps
+  username: $USERNAME       # If AZURE_WA_USERNAME isn't set
+  password: $PASS   # If AZURE_WA_PASSWORD isn't set
+  site: integration-aerolinea # If AZURE_WA_SITE isn't set
