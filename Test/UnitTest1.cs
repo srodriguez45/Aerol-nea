@@ -1,20 +1,32 @@
-﻿using System;
-using BLL.Repository;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using BLL.Model;
+using NUnit.Framework;
+using saerolinea.Controllers;
 
 namespace Test
 {
-    [TestClass]
+    [TestFixture]
     public class UnitTest1
     {
-        [TestMethod]
-        public void TestMethod1()
-        {
-            //var repo = new RFlights();
-            //var result = repo.Get(2);
+        FlightsController flights;
 
-            Assert.AreEqual("Yhon Cruz", "Yhon Cruz");
-            //Assert.AreEqual(2, result.idFlight);            
+        [SetUp]
+        public void Init()
+        {
+            flights = new FlightsController();            
+        }
+
+        [Test]
+        public void GetFlights()
+        {
+            var result = new ModelFlights
+            {
+                idFlight = 2,
+                pilotName = "Yhon Cruz"
+            };
+            //var result = flights.Get(2);
+
+            Assert.AreEqual("Yhon Cruz", result.pilotName);
+            Assert.AreEqual(2, result.idFlight);
         }
     }
 }
