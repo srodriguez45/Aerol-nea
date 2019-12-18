@@ -1,8 +1,8 @@
 language: csharp 
 solution: "./saerolinea.sln"
-deploy:
-  provider: azure_web_apps
-  verbose: true
-  username: $USERNAME       # If AZURE_WA_USERNAME isn't set
-  password: $PASS   # If AZURE_WA_PASSWORD isn't set
-  site: integration-aerolinea # If AZURE_WA_SITE isn't set
+install:
+  - nuget restore saerolinea.sln
+  - nuget install NUnit.Console -Version 3.12.0 -OutputDirectory testrunner
+script:
+  - msbuild /p:Configuration=Release saerolinea.sln
+  - mono ./testrunner/NUnit.ConsoleRunner.3.12.0/tools/nunit3-console.exe ./Tests/bin/Debug/Tests.dll
